@@ -1,1 +1,16 @@
-GET http://localhost:4601/api/repos/
+GET http://localhost:4601/api/repos?status=1
+
+###
+
+POST http://localhost:4601/api/lang
+Content-Type: application/json
+
+{ "id": 8, "label": "PHP" }
+
+###
+
+DELETE http://localhost:4601/api/repos/2
+
+###
+
+PUT http://localhost:4601/api/repos/2

@@ -1,7 +1,8 @@
 import express from "express";
-// import express, { Response } from "express";
+// import express, { Request, Response } from "express";
 import router from "./router";
 const app = express();
+app.use(express.json());
 
 // redirige
 app.use("/api", router);
