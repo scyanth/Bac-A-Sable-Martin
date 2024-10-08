@@ -2,7 +2,7 @@ import { Repo } from "../types/RepoType";
 import { Link } from "react-router-dom";
 import './RepoCard.css';
 
-function RepoCard({ name, url, id, languages }: Repo) {
+function RepoCard({ name, url, id, languages, isFavorite }: Repo) {
     return (
       <div className="card">
         <h2>{name}</h2>

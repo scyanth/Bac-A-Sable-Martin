@@ -1,26 +1,28 @@
-import "reflect-metadata";
 import { dataSource } from "./db/client";
-import express from "express";
-import router from "./router";
-import cors from "cors";
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
+import { buildSchema } from "type-graphql";
+import RepoResolver from "./resolvers/repo.resolver";
+
 import * as dotenv from "dotenv";
 dotenv.config();
 
 const { PORT } = process.env;
 
-const app = express();
-
-app.use(
-    cors({
-        origin: process.env.FRONTEND_URL as string
-    })
-);
-
-app.use(express.json());
-
-app.use("/api", router);
-
-app.listen(PORT, async () => {
+(async () => {
     await dataSource.initialize();
-    console.log('Server is listening on http://localhost:4601');
-});
+
+    const schema = await buildSchema({
+        resolvers : [RepoResolver],
+    });
+
+    const server = new ApolloServer({
+        schema,
+    });
+
+    const { url } = await startStandaloneServer(server, {
+    listen: { port: PORT as undefined | number },
+    });
+
+    console.log(`🚀  Server ready at: ${url}`);
+})();
