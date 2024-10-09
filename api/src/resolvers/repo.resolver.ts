@@ -35,6 +35,13 @@ export default class RepoResolver {
     return repos;
   }
 
+  @Query(() => Repo)
+  async getRepoById(@Arg("id") id: string) {
+    const repo = await Repo.findOneOrFail({where: {id : id}});
+    console.log(repo);
+    return repo;
+  }
+
   @Mutation(() => Repo)
   async createRepo(@Arg("repoInput") repoInput: createRepoInput) {
     console.log(repoInput);
