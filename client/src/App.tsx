@@ -22,6 +22,7 @@ function App() {
   const { loading, error, data, refetch } = useQuery(getRepos);
 
   if (loading) return <h1>Loading...</h1>
+  if (error) return <h1>Error !</h1>
 
   // const [repos, setRepos] = useState<Repo[]>([]);
   // const [filteredRepos, setFilteredRepos] = useState<Repo[]>([]);
@@ -77,7 +78,7 @@ function App() {
           <RepoCard name={repo.name} url={repo.url} languages={repo.languages} id={repo.id} isFavorite={repo.isFavorite} />
         ))}
       </div>
-      <button onClick={refetch}></button>
+      <button onClick={() => refetch()}>Rafraîchir</button>
     </main>
   )
 }
