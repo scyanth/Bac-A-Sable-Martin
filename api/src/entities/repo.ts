@@ -37,10 +37,12 @@ export class Repo extends BaseEntity {
     @IsBoolean()
     isFavorite: boolean;
 
+    @Field(() => Status)
     @ManyToOne(() => Status, status => status.id)
     @JoinColumn()
     status: Status;
 
+    @Field(() => [Lang])
     @ManyToMany(() => Lang, lang => lang.id)
     @JoinTable()
     languages: Lang[];

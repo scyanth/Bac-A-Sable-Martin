@@ -37,7 +37,7 @@ export default class RepoResolver {
 
   @Query(() => Repo)
   async getRepoById(@Arg("id") id: string) {
-    const repo = await Repo.findOneOrFail({where: {id : id}});
+    const repo = await Repo.findOneOrFail({where: {id : id}, relations: {status: true, languages: true}});
     console.log(repo);
     return repo;
   }
