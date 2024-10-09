@@ -1,8 +1,8 @@
 import { Repo } from "../entities/repo";
 import { Status } from "../entities/status";
-// import { Lang } from "../entities/lang";
-// import { In } from "typeorm";
-import { Arg, Field, InputType, Mutation, Query, Resolver } from "type-graphql";
+import { Lang } from "../entities/lang";
+import { In } from "typeorm";
+import { Arg, Field, InputType, Mutation, Query, Resolver, ID } from "type-graphql";
 
 @InputType()
 class createRepoInput {
@@ -21,8 +21,8 @@ class createRepoInput {
   @Field()
   status: number;
 
-  // @Field(() => [Lang])
-  // languages: number[];
+  @Field(() => [ID])
+  languages: number[];
 
 }
 
@@ -48,7 +48,7 @@ export default class RepoResolver {
 
     try {
       newRepo.status = await Status.findOneOrFail({where: {id : repoInput.status}});
-      // newRepo.languages = await Lang.find({where: {id: In (repoInput.languages.map((l: number) => l))}});
+      newRepo.languages = await Lang.find({where: {id: In (repoInput.languages.map((l: number) => l))}});
       newRepo.save();
 
     } catch (error) {
