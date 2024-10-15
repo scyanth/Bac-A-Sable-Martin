@@ -30,7 +30,7 @@ class createRepoInput {
 export default class RepoResolver {
   @Query(() => [Repo])
   async getRepos() {
-    const repos = await Repo.find();
+    const repos = await Repo.find({relations: {status: true, languages: true}});
     console.log(repos);
     return repos;
   }
