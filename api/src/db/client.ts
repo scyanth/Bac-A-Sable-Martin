@@ -3,20 +3,13 @@ import { Repo } from "../entities/repo";
 import { Status } from "../entities/status";
 import { Lang } from "../entities/lang";
 
-// export const dataSource = new DataSource({
-//     type: "sqlite",
-//     database: "./src/db/repomanager.db",
-//     entities : [Repo, Status, Lang],
-//     synchronize: true
-// });
-
 export const dataSource = new DataSource({
   type: "postgres",
-  host: "db", // Nom de l'image associé à Postgres --name dans la commande
+  host: POSTGRES_HOST, // Nom de l'image associé à Postgres --name dans la commande
   port: 5432,
-  username: "postgres",
-  password: "password",
-  database: "postgres",
+  username: POSTGRES_USER,
+  password: POSTGRES_PASSWORD,
+  database: POSTGRES_DB,
   entities: [Repo, Status, Lang],
   synchronize: true,
 });
