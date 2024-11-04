@@ -8,9 +8,6 @@ RUN npm install
 
 COPY src src
 COPY data data
-COPY .env .env
-
-# RUN npm run seed
 
 EXPOSE 4601
 
