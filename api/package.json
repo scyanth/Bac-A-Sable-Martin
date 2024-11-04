@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "fetch": "gh repo list scyanth --json id,name,url,languages,isPrivate > ./data/raw.json",
     "dev": "ts-node ./src/index.ts",
-    "seed": "ts-node ./src/db/seed.ts"
+    "seed": "ts-node ./src/db/seed.ts",
+    "full": "ts-node ./src/db/seed.ts && ts-node ./src/index.ts"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +17,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^22.7.0",
+    "@types/pg": "^8.11.10",
     "class-validator": "^0.14.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -23,6 +25,7 @@
     "graphql": "^16.9.0",
     "graphql-scalars": "^1.23.0",
     "joi": "^17.13.3",
+    "pg": "^8.13.1",
     "reflect-metadata": "^0.2.2",
     "sqlite3": "^5.1.7",
     "ts-node": "^10.9.2",
